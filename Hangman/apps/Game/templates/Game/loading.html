@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gold Striker</title>
+    {% load static %}
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Game/images/icon.ico' %}" />
+    <!-- CSS -->
+    <link rel='stylesheet' href="{% static 'Game/css/loading.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Old West Font -->
+    <link href="https://fonts.googleapis.com/css?family=Rye&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 style=>Gold<img src="{% static 'Game/images/pickaxe.png' %}">Striker</h1>
+    </div>
+    
+    <div class='loadingform'>
+    <p class='instruct'>First, select your difficulty</p>
+    <p class='instruct'>Then, divide your available points amongst the 6 positions</p>
+    <form action='/begin' method='POST' class='begin'>
+        {% csrf_token %}
+        {{ loadingForm.as_p }}
+        <button type='submit' class="btn btn-danger">Begin</button>
+    </form>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        var money = 0;
+        var expectedMoney = 0;
+        $('#difficultyLevel').change(function(){
+            var radioValue = $("input[name='difficulty']:checked").val();
+            console.log(radioValue);
+            // reset to 1, so that a change in difficulty does not allow players to push more money
+            $("#positionA").val(1);
+            $("#positionB").val(1);
+            $("#positionC").val(1);
+            $("#positionD").val(1);
+            $("#positionE").val(1);
+            if (radioValue == "easy"){
+                money = 1000 - 5;
+                expectedMoney = 1000;
+                console.log("Easy selected", money);
+                $("#positionF").val(money);
+            }
+            else if(radioValue == "medium"){
+                money = 2000 - 5;
+                expectedMoney = 2000;
+                console.log("Medium selected", money);
+                $("#positionF").val(money);
+            }
+            else if(radioValue == "hard"){
+                money = 3000 - 5;
+                expectedMoney = 3000;
+                console.log("Hard selected", money);
+                $("#positionF").val(money);
+            }
+            else if(radioValue == "crazy"){
+                money = 4000 - 5;
+                expectedMoney = 4000;
+                console.log("Crazy selected", money);
+                $("#positionF").val(money);
+                
+            }
+        });
+        
+        function changingValue(location){
+            if(location.val() > money){
+                console.log('too much');
+                alert("You're spending too many points...Don't Be Greedy!");
+                location.val(1);
+            } 
+            else if(location.val() < 1 || isNaN(parseInt((location).val())) == true){
+                console.log(parseInt((location).val()))
+                console.log('too little');
+                alert("Please bid a positive number");
+                location.val(1);
+            } 
+            console.log(parseInt(location.val()))
+            totalMoney = parseInt($("#positionA").val()) + parseInt($("#positionB").val()) + parseInt($("#positionC").val()) + parseInt($("#positionD").val()) + parseInt($("#positionE").val())
+            money = expectedMoney - totalMoney 
+            console.log(expectedMoney, totalMoney)
+            $("#positionF").val(money)
+        }
+        $('#positionA').change(function(){
+            changingValue($("#positionA"))
+        });
+        $('#positionB').change(function(){
+            changingValue($("#positionB"))
+        });
+        $('#positionC').change(function(){
+            changingValue($("#positionC"))
+        });
+        $('#positionD').change(function(){
+            changingValue($("#positionD"))
+        });
+        $('#positionE').change(function(){
+            changingValue($("#positionE"))
+        });
+    });
+</script>
+
+</html>

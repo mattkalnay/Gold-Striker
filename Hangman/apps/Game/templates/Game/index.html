@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gold Striker</title>
+    {% load static %}
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Game/images/icon.ico' %}" />
+    <!-- Stylesheet -->
+    <link rel='stylesheet' href="{% static 'Game/css/index.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Old West Font -->
+    <link href="https://fonts.googleapis.com/css?family=Rye&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="header">
+        <h1 style=>Gold<img src="{% static 'Game/images/pickaxe.png' %}">Striker</h1>
+    </div>
+    <div class="score">
+        <h2>Score: {{ score }}</h2>
+    </div>
+    <div class="game">
+        <div class="guessform">
+            <form action='/guess' method='POST' class='create'>
+                {% if messages %}
+    
+                        {% for message in messages %}
+                        <p class="message">{{ message }}</p>
+                        {% endfor %}
+                    
+                {% endif %}
+                {% csrf_token %}
+                {{ guessForm.as_p}}
+                <button type="submit" class="btn btn-outline-danger">Guess!</button>
+            </form>
+        </div>
+
+        <div class="board">
+            {% for i in mysteryword %}
+                {{ i }}
+            {% endfor %}
+        </div>
+        <div class="guessed">
+            {% for j in guessed %}
+                {{ j }}
+            {% endfor %}
+        </div>  
+    </div>
+    <div class="footer">
+        {% for amount in lost %}
+            <div class='moneybag'>
+                <img class="bag" src="{% static 'Game/images/moneylost.png' %}">
+                <p style="text-decoration: line-through;" class="total"> {{ amount }}</p>
+            </div>
+        {% endfor %}
+        {% for wager in wagers %}
+            <div class="moneybag">
+                <img class="bag" src="{% static 'Game/images/moneybag.png' %}">
+                <p class="total"> {{ wager }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

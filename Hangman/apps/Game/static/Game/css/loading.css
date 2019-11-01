@@ -1,0 +1,50 @@
+*{
+    /* outline: 1px solid pink; */
+    font-family: montserratregular, Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+.container {
+    min-height: 900px;
+    min-width: 100%;
+    background-size: 10%;
+    background: linear-gradient(
+        rgba(255, 251, 0, 0.2), 
+        rgba(255, 251, 0, 0.2)
+), url("../images/oldwest.jpg") center no-repeat; ;
+    background-size: cover;
+}
+
+    .header {
+        min-height: 100px;
+        min-width: 100%;
+        background-color: rgba(135, 206, 235, 0.5);
+        margin-bottom: 100px;
+    }
+        .header h1{
+            font-family: 'Rye', cursive;
+            text-align: center;
+            font-size: 400%;
+            color: red;
+        }
+
+    
+    .loadingform {
+
+        background-color: tan;
+        max-width: 50%;
+        margin: auto;
+        padding: 10px;
+        text-align: center;
+        border: 3px solid white;
+        border-radius: 25px;
+    }
+
+    #difficultyLevel li{
+        list-style-position: inside;
+    }
+
+        .instruct {
+            font-size: 120%;
+            font-weight: bold;
+        }

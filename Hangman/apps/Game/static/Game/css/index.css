@@ -1,0 +1,108 @@
+*{
+    /* outline: 1px solid pink; */
+    font-family: montserratregular, Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+.container {
+    min-height: 900px;
+    min-width: 100%;
+    background-size: 10%;
+    background: linear-gradient(
+        rgba(255, 251, 0, 0.2), 
+        rgba(255, 251, 0, 0.2)
+), url("../images/oldwest.jpg") center no-repeat; ;
+    background-size: cover;
+}
+
+    .header {
+        min-height: 100px;
+        min-width: 100%;
+        background-color: rgba(135, 206, 235, 0.5);
+        margin-bottom: 75px;
+    }
+        .header h1{
+            font-family: 'Rye', cursive;
+            text-align: center;
+            font-size: 400%;
+            color: red;
+        }
+
+    .score{
+        max-width: 20%;
+        margin: auto;
+        text-align: center;
+        background-color: green;
+        color: white;
+        border-radius: 25px;
+        margin-bottom: 25px;
+    }
+    .game {
+        min-height: 200px;
+        min-width: 100%;
+        margin-bottom: 75px;
+        /* display: inline-block; */
+    }
+
+        .guessform {
+            position: relative;
+            min-height: 50px;
+            max-width: 50%;
+            margin: auto;
+            background-color: gold;
+            text-align: center;
+            padding-top: 5px;
+            border-width: 3px 3px 0px 3px;
+            border-style: solid;
+            border-radius: 25px 25px 0px 0px;
+            padding-bottom: 5px;
+            margin-bottom: -3px;
+        }
+        .message{
+            color: red;
+            font-weight: bold;
+        }
+        .board {
+            font-size: 50px;
+            min-height: 100px;
+            max-width: 75%;
+            margin: auto;
+            text-align: center;
+            background-color: gold;
+            border-width: 3px 3px 3px 3px;
+            border-style: solid;
+            margin-bottom: -3px;
+            border-radius: 25px;
+        }
+
+        .guessed {
+            max-width: 50%;
+            margin: auto;
+            font-size: 20px;
+            min-height: 50px;
+            background-color: gold;
+            text-align: center;
+            border-width: 0px 3px 3px 3px;
+            border-style: solid;
+            border-radius: 0px 0px 25px 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            
+        }
+        .footer{
+            margin-right: 5%;
+            margin-left: 5%;
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(240, 248, 255, 0.7);
+        }
+
+            .footer .moneybag{
+                display: inline-block;
+            }
+
+            .footer .total{
+                text-align: center;
+                font-size: 200%
+            }
